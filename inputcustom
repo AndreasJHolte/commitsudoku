@@ -1,0 +1,34 @@
+from create2 import *
+
+def customsud():
+    
+    
+    board=createboard(int(input("size:")))
+
+
+    while True:
+
+        row=int(input("which row:"))
+        col=int(input("which column:"))
+        num=int(input("which number:"))
+
+        if (0 in {row,col,num}):
+            print("bye")
+            break
+        
+        board[row][col]=num
+        
+
+
+        
+
+    return board  
+
+
+
+
+
+board=customsud()
+
+print(board[1][1])
+print(board[1][2])

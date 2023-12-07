@@ -91,7 +91,7 @@ def findunique(size=3,lines=[],difficulty=1,mode="rain"):
         else:
             lines=makeline(size)
             seed=backtrack(randomseed(size,size+1,size+3),lines)
-            displaycompact(seed)
+        
         if difficulty==1:
             divide=2.0
         elif difficulty==2:

@@ -169,9 +169,17 @@ def main():
                     if soluts<1:
                         print("this board has no solutions")
                 if choice==4:
-
+                    building=True
                     while building:
                         displaycompact(board)
+                        ines=[]
+                        
+                        for i in range(len(lines)):
+                            ines.append([lines[i][0].reverse()])
+                            for y in range(len(lines[i])-1):
+                                ines[i].append(lines[i][y+1].reverse())
+                        if len(ines)>0:
+                            print("these are the lines in column,row format: ",lines)
 
                         change=numinput(size*size)
                         if isinstance(board[int(change[0])][int(change[1])],int):

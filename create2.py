@@ -87,7 +87,7 @@ def findunique(size=3,lines=[],difficulty=1,mode="rain"):
     elif mode=="rain":
 
         if lines==[]:
-            seed=backtrack(randomseed(size,size*size*size-15,size*size*size-12))
+            seed=backtrack(randomseed(size,size*size+3,size*size+5))
         else:
             lines=makeline(size)
             seed=backtrack(randomseed(size,size+1,size+3),lines)
@@ -161,7 +161,7 @@ def makeline(size=3,length=4,amo=3):
                 tries+=1
                 if tries>8:
                     growth=True
-    print(lines, "bruh")
+   
     return lines
 
 

@@ -1,11 +1,15 @@
 import math
-
-ags=""
-
-for i in range(5):
-    ags=ags+str(i)
-print(ags)
-if "2" in ags:
-    print("abcd"[2])
+import copy
+import random
+from create2 import *
+from solvers import *
+from interface import *
 
 
+
+
+[big,bla]=findunique(3)
+displaycompact(big)
+
+
+displaycompact(backtrack(big))

@@ -1,12 +1,17 @@
+import math
+import copy
+import random
+from create2 import *
+from solvers import *
+from interface import *
 
 
+[absi,bas]=findunique()
 
-c=list(range(6))
-print(c)
-[a,b]=[[1,2,3],3]
+babsi=backtrack(absi)
 
-a[1]=[]
-a[1].append(1)
-print(a)
+displaycompact(babsi)
+
+print(checksolve(babsi))
 
 

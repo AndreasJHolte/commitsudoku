@@ -74,19 +74,19 @@ def eliminate(board,lastrow=0,lastcol=0,lastcell=0):
     while solved:
 
 
-        for i in range(size):
-            for y in range(size):
 
                 
-                if isinstance(board[i][y],list):
-                    board=checkcell(board,i,y)
-                    if len(board[i][y])==1:
-                        board[i][y]=board[i][y][0]
+                
                 
 
         solved=False
         for i in range(size):
             for y in range(size):
+                if isinstance(board[i][y],list):
+                    board=checkcell(board,i,y)
+                    if len(board[i][y])==1:
+                        board[i][y]=board[i][y][0]
+                        
                 if (board[i][y]) not in range(1,10):
                     
                     solved=True

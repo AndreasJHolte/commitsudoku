@@ -14,8 +14,9 @@ def createboard(size):
     return board
 
 
-check=createboard(3)
-print(check[0][0])
+
+#check=createboard(3)
+#print(check[0][0])
 
 
 

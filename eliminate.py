@@ -3,9 +3,10 @@ import math
 import copy
 
 
-def importsud():
+def importsud(board):
 
-    board=createboard(3)
+#    board=createboard(size)
+    size=len(board)
 
     primeeasy=[[0,3,0,7,0,0,0,0,0],
                [0,0,2,0,0,0,6,0,0],
@@ -29,13 +30,19 @@ def importsud():
              [8,0,1,0,2,6,9,3,4],
              [0,7,3,8,9,1,0,2,5]]
     
-        
-    for i in range(9):
-        for y in range(9):
-            if primeeasy[i][y] in board[i][y]:
-                board[i][y]=primeeasy[i][y]
+   
+
+    for i in range(size):
+        for y in range(size):
+            if board[i][y]==0:
+                board[i][y]=[]
+                for x in range(size):
+                    board[i][y].append(x+1)
+
 
     return board
+
+
 
 
 
@@ -44,16 +51,6 @@ def customsud():
     
     board=createboard(int(input("size:")))
 
-    
-    primeex=[[0,0,0,0,0,0,5,0,1],
-             [5,6,0,0,0,0,0,0,0],
-             [0,0,7,2,0,4,0,0,0],
-             [0,0,5,0,7,9,2,1,3],
-             [0,0,4,1,0,2,0,5,9],
-             [2,0,0,0,0,8,4,0,0],
-             [0,0,0,3,0,5,0,0,7],
-             [8,0,1,0,2,6,9,3,4],
-             [0,7,3,8,9,1,0,2,5]]
     while True:
 
         row=int(input("which row:"))
@@ -240,13 +237,9 @@ def checkcell(board, row, col):
         
 
 #finish=backtrack(importsud(),1)
-finish=solve(importsud())
-print("ah")
-for i in range(9):
-    if isinstance(finish,list):
-        print(finish[i])
-    else:
-        print("nah")
+#finish=solve(importsud())
+
+   
 
 #importsud()
 

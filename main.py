@@ -1,11 +1,9 @@
+import math
+import copy
 from create2 import *
+from eliminate import *
 
-
-
-
-check=createboard(4)
-print(check[0][0])
-
-
+def choices():
+    a=1
 
 

@@ -1,27 +1,102 @@
 import math
+import copy
+from eliminate import importsud
 
 
 
 
 
-
-def backtrack(board,lasti=0,lasty=0,level=0):
+def backtrack(board,success=[],lasti=-1,lasty=-1):
     
     for i in range(9):
         for y in range(9):
-            if board[i][y]==0:
+            if isinstance(board[i][y],list):
                 for num in range(1,10):
                     
                     if legalcheck(board,i,y,num):
                         board[i][y]=num
-                        board=backtrack(board,i,y,level+1)
-                        if board[i][y]!=0:
+                        board=backtrack(board,success,i,y)
+                        if len(board)<9:
+                            print("whoops",board)
+                        if not isinstance(board[i][y],list):
                             return board
+                        
                 #print(board)
-                board[lasti][lasty]=0
+                if lasti>-1:
+                    board[lasti][lasty]=[]
+                    for x in range(1,len(board)+1):
+                        board[lasti][lasty].append(x)
                 return board
 
+    print("hurray")
+  
+    
+    #print(success[0])
     return board
+
+
+def checkamo(board,success=[],lasti=-1,lasty=-1):
+    
+    for i in range(9):
+        for y in range(9):
+            if isinstance(board[i][y],list):
+                for num in range(1,10):
+                    
+                    if legalcheck(board,i,y,num):
+                        board[i][y]=num
+                        [board,success]=checkamo(board,success,i,y,)
+                        #if not isinstance(board[i][y],list):
+                         #   return board
+                        if len(success)>1:
+                            return [board,success]
+                #print(board)
+                if lasti>-1:
+                    board[lasti][lasty]=[]
+                    for x in range(1,len(board)+1):
+                        board[lasti][lasty].append(x)
+                return [board,success]
+
+
+    
+    #print("hurrayyy")
+    success.append(copy.copy(board))
+    #print("solution: ",success)
+    board[lasti][lasty]=[]
+    for x in range(1,len(board)+1):
+        board[lasti][lasty].append(x)
+    #print(success[0])
+    return [board,success]
+
+def checksol2(board,success=0,lasti=0,lasty=0):
+    
+    for i in range(9):
+        for y in range(9):
+            if isinstance(board[i][y],list):
+                for num in range(1,10):
+                    
+                    if legalcheck(board,i,y,num):
+                        board[i][y]=num
+                        [board,success]=checksol2(board,success,i,y,)
+                        #if not isinstance(board[i][y],list):
+                         #   return board
+                        
+                        if success>2:
+                            print("done")
+                            return [board,success]
+                #print(board)
+                if lasti>-1:
+                    board[lasti][lasty]=[]
+                    for x in range(1,len(board)+1):
+                        board[lasti][lasty].append(x)
+                return [board,success]
+
+    print("hurray", lasti,lasty,i,y)
+    success+=1
+    board[lasti][lasty]=[]
+    for x in range(1,len(board)+1):
+        board[lasti][lasty].append(x)
+    #print(success[0])
+    return [board,success]
 
 def legalcheck(board,row,col,num):
 
@@ -54,6 +129,18 @@ def legalcheck(board,row,col,num):
     
     return True
 
+def  checksolve(board):
+
+    size=len(board)
+
+    for i in range(size):
+        for y in range(size):
+            num=board[i][y]
+            board[i][y]=list(range(1,size+1))
+            if legalcheck(board,i,y,num):
+                return True
+            board[i][y]=num
+    return False
 
 primeeasy=[[0,3,0,7,0,0,0,0,0],
                [0,0,2,0,0,0,6,0,0],
@@ -74,10 +161,9 @@ primeeas=[[0,0,0,0,0,0,5,0,1],
              [8,0,1,0,2,6,9,3,4],
              [0,7,3,8,9,1,0,2,5]]
 
-finish=backtrack(primeeasy,0,0,1)
+finish="no"
+#finish=backtrack(importsud(primeeas))
 
 for i in range(9):
     if isinstance(finish,list):
         print(finish[i])
-    else:
-        print("nah")
